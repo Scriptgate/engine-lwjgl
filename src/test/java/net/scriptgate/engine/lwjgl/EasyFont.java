@@ -3,13 +3,11 @@ package net.scriptgate.engine.lwjgl;
 import net.scriptgate.engine.Application;
 import net.scriptgate.engine.Renderer;
 
-import static net.scriptgate.engine.ApplicationHandlerBuilder.run;
-import static net.scriptgate.engine.ApplicationType.OPENGL;
 
 public class EasyFont implements Application {
 
     public static void main(String[] args) {
-        run(new EasyFont()).in(OPENGL);
+        new OpenGLApplicationHandler().start(new EasyFont());
     }
 
     private EasyFontRenderer fontRenderer;

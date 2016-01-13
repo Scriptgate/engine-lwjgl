@@ -5,15 +5,13 @@ import net.scriptgate.engine.InputComponent;
 import net.scriptgate.engine.Renderer;
 
 import static net.scriptgate.common.Color3f.*;
-import static net.scriptgate.engine.ApplicationHandlerBuilder.run;
-import static net.scriptgate.engine.ApplicationType.OPENGL;
 import static net.scriptgate.engine.Engine.HEIGHT;
 import static net.scriptgate.engine.Engine.WIDTH;
 
 public class OpenGLTrigonometry implements Application {
 
     public static void main(String[] args) {
-        run(new OpenGLTrigonometry()).in(OPENGL);
+        new OpenGLApplicationHandler().start(new OpenGLTrigonometry());
     }
 
     private static final int RADIUS = 128;

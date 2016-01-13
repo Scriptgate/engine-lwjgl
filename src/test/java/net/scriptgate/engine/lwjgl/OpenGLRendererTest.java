@@ -5,13 +5,11 @@ import net.scriptgate.engine.Engine;
 import net.scriptgate.engine.Renderer;
 
 import static net.scriptgate.common.Color3f.RED;
-import static net.scriptgate.engine.ApplicationHandlerBuilder.run;
-import static net.scriptgate.engine.ApplicationType.OPENGL;
 
 public class OpenGLRendererTest implements Application {
 
     public static void main(String[] args) {
-        run(new OpenGLRendererTest()).in(OPENGL);
+        new OpenGLApplicationHandler().start(new OpenGLRendererTest());
     }
 
     @Override
