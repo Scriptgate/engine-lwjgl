@@ -1,0 +1,8 @@
+include ':engine-api'
+include ':engine-core'
+
+project(':engine-api').projectDir = file('../engine-api')
+project(':engine-core').projectDir = file('../engine-core')
+
+rootProject.name = 'engine-lwjgl'
+
