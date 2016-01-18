@@ -2,6 +2,7 @@ package net.scriptgate.engine.lwjgl;
 
 import net.scriptgate.common.Rectangle;
 import net.scriptgate.engine.Application;
+import net.scriptgate.engine.Key;
 import net.scriptgate.engine.Renderer;
 
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ import static net.scriptgate.common.Color3f.BLACK;
 import static net.scriptgate.common.Color3f.WHITE;
 import static net.scriptgate.engine.Engine.HEIGHT;
 import static net.scriptgate.engine.Engine.WIDTH;
-import static org.lwjgl.glfw.GLFW.*;
 
 public abstract class RendererTest implements Application {
 
@@ -42,29 +42,9 @@ public abstract class RendererTest implements Application {
     }
 
     @Override
-    public void onKeyDown(int key) {
-        switch (key) {
-            case GLFW_KEY_RIGHT:
-                int indexOfNextTestCase = testCases.indexOf(testCase) + 1;
-                if (indexOfNextTestCase >= testCases.size()) {
-                    testCase = testCases.get(0);
-                } else {
-                    testCase = testCases.get(indexOfNextTestCase);
-                }
-                break;
-            case GLFW_KEY_LEFT:
-                int indexOfPreviousTestCase = testCases.indexOf(testCase) - 1;
-                if (indexOfPreviousTestCase < 0) {
-                    testCase = testCases.get(testCases.size() - 1);
-                } else {
-                    testCase = testCases.get(indexOfPreviousTestCase);
-                }
-                break;
-        }
-        if (key >= GLFW_KEY_1 && key <= GLFW_KEY_9) {
-            int numeric = (key - GLFW_KEY_0 - 1);
-            quickLookup(numeric);
-        }
+    public void onKeyDown(Key key) {
+        //TODO: implement
+        System.out.println(key.keyName);
     }
 
     private void quickLookup(int numeric) {

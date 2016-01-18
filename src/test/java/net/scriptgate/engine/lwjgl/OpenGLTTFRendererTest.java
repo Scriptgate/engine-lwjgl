@@ -14,6 +14,15 @@ public class OpenGLTTFRendererTest extends RendererTest {
     }
 
     public OpenGLTTFRendererTest() {
+        addTestCase("Test text origin", renderer -> {
+
+            renderer.setColor(1, RED);
+            renderer.drawLine(256,0,256,HEIGHT);
+            renderer.drawLine(0,256,WIDTH,256);
+
+            renderer.setColor(1,WHITE);
+            renderer.drawText(256,256,"Origin");
+        });
         addTestCase("Test all characters", renderer -> {
             int textY = 100;
             Rectangle textBounds;

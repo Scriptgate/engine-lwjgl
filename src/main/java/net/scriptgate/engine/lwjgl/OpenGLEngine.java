@@ -1,9 +1,6 @@
 package net.scriptgate.engine.lwjgl;
 
-import net.scriptgate.engine.Application;
-import net.scriptgate.engine.Engine;
-import net.scriptgate.engine.EngineBase;
-import net.scriptgate.engine.InputComponent;
+import net.scriptgate.engine.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
@@ -46,7 +43,9 @@ public class OpenGLEngine extends EngineBase {
 
         keyCallback = new GLFWKeyCallback() {
             @Override
-            public void invoke(long window, int key, int scancode, int action, int mods) {
+            public void invoke(long window, int keyCode, int scancode, int action, int mods) {
+                String keyName = GLFW.glfwGetKeyName(keyCode, scancode);
+                Key key = new Key(keyCode, keyName);
                 switch (action) {
                     case GLFW.GLFW_RELEASE:
                         input.keyReleased(key);
@@ -60,8 +59,7 @@ public class OpenGLEngine extends EngineBase {
                     default:
                         throw new IllegalArgumentException(String.format("Unsupported key action: 0x%X", action));
                 }
-
-                if (key == GLFW.GLFW_KEY_ESCAPE && action == GLFW.GLFW_RELEASE) {
+                if (keyCode == GLFW.GLFW_KEY_ESCAPE && action == GLFW.GLFW_RELEASE) {
                     GLFW.glfwSetWindowShouldClose(window, GL11.GL_TRUE);
                 }
             }

@@ -88,7 +88,6 @@ class OpenGLTTFRenderer {
             FloatBuffer bY = getYBuffer();
             for (int character : toASCII(text)) {
                 STBTruetype.stbtt_GetBakedQuad(cdata, BITMAP_W, BITMAP_H, character, bX, bY, quad, 1);
-                //TODO: remove static call
                 renderer.drawBoxedTexCoords(
                         quad.x0(), quad.y0(),
                         quad.x1(), quad.y1(),
