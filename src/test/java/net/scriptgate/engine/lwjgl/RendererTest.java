@@ -43,8 +43,28 @@ public abstract class RendererTest implements Application {
 
     @Override
     public void onKeyDown(Key key) {
-        //TODO: implement
-        System.out.println(key.keyName);
+        switch (key.keyCode) {
+            case 262://GLFW_KEY_RIGHT:
+                int indexOfNextTestCase = testCases.indexOf(testCase) + 1;
+                if (indexOfNextTestCase >= testCases.size()) {
+                    testCase = testCases.get(0);
+                } else {
+                    testCase = testCases.get(indexOfNextTestCase);
+                }
+                break;
+            case 263://GLFW_KEY_LEFT:
+                int indexOfPreviousTestCase = testCases.indexOf(testCase) - 1;
+                if (indexOfPreviousTestCase < 0) {
+                    testCase = testCases.get(testCases.size() - 1);
+                } else {
+                    testCase = testCases.get(indexOfPreviousTestCase);
+                }
+                break;
+        }
+        if (key.keyCode >= 49 && key.keyCode <= 57) {
+            int numeric = (key.keyCode - 49);
+            quickLookup(numeric);
+        }
     }
 
     private void quickLookup(int numeric) {
