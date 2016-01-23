@@ -11,6 +11,7 @@ import org.lwjgl.system.libffi.Closure;
 import static java.lang.System.exit;
 import static net.scriptgate.engine.Engine.HEIGHT;
 import static net.scriptgate.engine.Engine.WIDTH;
+import static org.lwjgl.glfw.GLFW.GLFW_MOD_SHIFT;
 import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
 
 
@@ -45,7 +46,8 @@ public class OpenGLEngine extends EngineBase {
             @Override
             public void invoke(long window, int keyCode, int scancode, int action, int mods) {
                 String keyName = GLFW.glfwGetKeyName(keyCode, scancode);
-                Key key = new Key(keyCode, keyName);
+                boolean shiftPressed = (mods & GLFW_MOD_SHIFT) != 0;
+                Key key = new Key(keyCode, keyName, shiftPressed);
                 switch (action) {
                     case GLFW.GLFW_RELEASE:
                         input.keyReleased(key);
