@@ -1,5 +1,4 @@
-include ':engine-api'
-include ':engine-core'
+include ':engine-api', ':engine-core'
 
 project(':engine-api').projectDir = file('../engine-api')
 project(':engine-core').projectDir = file('../engine-core')
