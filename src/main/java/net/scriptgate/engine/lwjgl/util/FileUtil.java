@@ -7,10 +7,11 @@ import java.util.Date;
 
 public class FileUtil {
 
-    private static final DateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
+    private static final DateFormat TIMESTAMP_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 
+    //TODO: add support for filename
     public static File getUniqueFileNameWithTimestamp(File parentDirectory, String extension) {
-        String timestamp = timestampFormat.format(new Date());
+        String timestamp = TIMESTAMP_FORMAT.format(new Date());
         int index = 1;
 
         File result;

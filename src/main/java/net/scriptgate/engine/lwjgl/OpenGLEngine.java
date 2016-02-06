@@ -47,7 +47,8 @@ public class OpenGLEngine extends EngineBase {
             public void invoke(long window, int keyCode, int scancode, int action, int mods) {
                 String keyName = GLFW.glfwGetKeyName(keyCode, scancode);
                 boolean shiftPressed = (mods & GLFW_MOD_SHIFT) != 0;
-                Key key = new Key(keyCode, keyName, shiftPressed);
+                boolean ctrlPressed = (mods & GLFW.GLFW_MOD_CONTROL) != 0;
+                Key key = new Key(keyCode, keyName, shiftPressed, ctrlPressed);
                 switch (action) {
                     case GLFW.GLFW_RELEASE:
                         input.keyReleased(key);
