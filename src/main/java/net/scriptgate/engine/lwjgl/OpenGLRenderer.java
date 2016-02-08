@@ -20,12 +20,11 @@ public class OpenGLRenderer implements Renderer {
     private final Color4f color;
     private static final float DEG2RAD = 3.14159f / 180;
     private final ImageLoader<Texture> imageLoader;
-    private final OpenGLTTFRenderer fontRenderer;
+    private static final OpenGLTTFRenderer fontRenderer = new OpenGLTTFRenderer();
 
     public OpenGLRenderer() {
         imageLoader = new TextureLoader();
         color = new Color4f(1, 1, 1, 1);
-        fontRenderer = new OpenGLTTFRenderer();
     }
 
     @Override
@@ -241,6 +240,17 @@ public class OpenGLRenderer implements Renderer {
     @Override
     public Rectangle getBounds(int x, int y, String text) {
         return fontRenderer.getBounds(x, y, text);
+    }
+
+    /**
+     * Unsafe version of {@link #getBounds(int, int, String) getBounds}
+     * @param x x-coordinate to calculate bounds at
+     * @param y y-coordinate to calculate bounds at
+     * @param text The text to calculate the bounds of
+     * @return The bounds of rendering text at (x,y)
+     */
+    public static Rectangle _getBounds(int x, int y, String text) {
+        return fontRenderer.getBounds(x,y,text);
     }
 
     @Override
