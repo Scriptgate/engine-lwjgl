@@ -50,6 +50,9 @@ public class OpenGLEngine extends EngineBase {
                 boolean ctrlPressed = (mods & GLFW.GLFW_MOD_CONTROL) != 0;
                 input.setShiftPressed(shiftPressed);
                 input.setCtrlPressed(ctrlPressed);
+
+                keyName = keyName == null || shiftPressed ? keyName : keyName.toLowerCase();
+
                 Key key = new Key(keyCode, keyName, shiftPressed, ctrlPressed);
                 switch (action) {
                     case GLFW.GLFW_RELEASE:
