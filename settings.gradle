@@ -1,8 +1,1 @@
-includeFlat 'engine-api'
-include ':engine-core'
-
-project(':engine-core').projectDir = file('../engine-core')
-project(':engine-api').projectDir = file('../engine-api')
-
 rootProject.name = 'engine-lwjgl'
-

@@ -1,5 +1,5 @@
-group 'net.scriptgate'
-version '1.0-SNAPSHOT'
+group 'net.scriptgate.engine'
+version '0.0.1-SNAPSHOT'
 
 apply plugin: 'java'
 
@@ -7,14 +7,25 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://github.com/Scriptgate/scriptgate-repo/raw/master"
+    }
 }
 
 dependencies {
-    compile project(':engine-core')
-    compile project(':engine-api')
+    compile group: 'net.scriptgate.engine', name:'engine-api', version:'0.0.1-SNAPSHOT'
+    compile group: 'net.scriptgate.engine', name:'engine-core', version:'0.0.1-SNAPSHOT'
 
     compile group: 'org.lwjgl', name:'lwjgl', version:'3.0.0b'
     compile 'org.lwjgl:lwjgl-platform:3.0.0b:natives-windows'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'com.fasterxml.jackson.core', name:'jackson-core', version:'2.6.2'
+    compile group: 'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.6.2'
+}
+
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
