@@ -9,9 +9,6 @@ import net.scriptgate.engine.lwjgl.texture.Texture;
 import net.scriptgate.engine.lwjgl.texture.TextureLoader;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
@@ -55,11 +52,6 @@ public class OpenGLRenderer implements Renderer {
         GL11.glPopMatrix();
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
-    }
-
-    @Override
-    public void drawImage(int x, int y, Image img) {
-        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -230,11 +222,6 @@ public class OpenGLRenderer implements Renderer {
         GL11.glPopMatrix();
 
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-    }
-
-    @Override
-    public BufferedImage printScreen() {
-        return OpenGLScreenshotHelper.getScreenshot();
     }
 
     @Override
