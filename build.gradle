@@ -1,7 +1,8 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
 group 'net.scriptgate.engine'
 version '0.0.1-SNAPSHOT'
-
-apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
@@ -13,28 +14,35 @@ repositories {
 }
 
 dependencies {
-    compile group: 'net.scriptgate.engine', name:'engine-api', version:'0.0.1-SNAPSHOT'
-    compile group: 'net.scriptgate.engine', name:'engine-core', version:'0.0.1-SNAPSHOT'
+    compile group: 'net.scriptgate.engine', name:'engine-api', version:'0.0.1-SNAPSHOT', changing: true
+    compile group: 'net.scriptgate.engine', name:'engine-core', version:'0.0.1-SNAPSHOT', changing: true
 
     compile group: 'org.lwjgl', name:'lwjgl', version:'3.0.0b'
     compile 'org.lwjgl:lwjgl-platform:3.0.0b:natives-windows'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile group: 'com.fasterxml.jackson.core', name:'jackson-core', version:'2.6.2'
-    compile group: 'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.6.2'
 }
 
-jar {
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, "seconds"
 }
 
-task sourcesJar(type: org.gradle.api.tasks.bundling.Jar, dependsOn: classes) {
+task createPom << {
+    pom {
+        project {
+            groupId project.group
+            artifactId project.name
+            version project.version
+            description 'POM was created with Gradle'
+        }
+    }.writeTo("${project.libsDir}/${project.name}-${project.version}.pom")
+}
+
+task sourceJar(type: org.gradle.api.tasks.bundling.Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
 
 artifacts {
-    archives sourcesJar
+    archives sourceJar
 }
