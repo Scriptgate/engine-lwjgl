@@ -51,9 +51,8 @@ public class OpenGLEngine extends EngineBase {
                 input.setShiftPressed(shiftPressed);
                 input.setCtrlPressed(ctrlPressed);
 
-                keyName = keyName == null || shiftPressed ? keyName : keyName.toLowerCase();
+                Key key = Key.from(keyCode, keyName, shiftPressed, ctrlPressed);
 
-                Key key = new Key(keyCode, keyName, shiftPressed, ctrlPressed);
                 switch (action) {
                     case GLFW.GLFW_RELEASE:
                         input.keyReleased(key);
